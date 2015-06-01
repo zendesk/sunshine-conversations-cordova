@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="io.supportkit.SKTCordovaPlugin" version="1.0.0">
+
+    <name>SupportKit</name>
+    <description>SupportKit Cordova Plugin</description>
+    <keywords>SupportKit,whisper,in-app messaging,support,help</keywords>
+
+    <asset src="www/js/supportkit-cordova.js" target="js/supportkit-cordova.js" />
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/widget/plugins/">
+            <feature name="SupportKitCordova">
+                <param name="ios-package" value="SupportKitCordova"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/SupportKitCordova.h" />
+        <source-file src="src/ios/SupportKitCordova.m" />
+    </platform>
+
+</plugin>
