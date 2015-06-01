@@ -1,7 +1,7 @@
 var SupportKit = {
 
     init: function (appToken, settings) {
-        if (options && typeof options === "object") {
+        if (settings && typeof settings === "object") {
             cordova.exec (null, null, "SupportKitCordova", "init", [appToken, settings]);
         } else {
             cordova.exec (null, null, "SupportKitCordova", "init", [appToken]);

@@ -24,7 +24,7 @@
         settingsDict = [[NSMutableDictionary alloc] init];
     }
 
-    [SupportKit init:[SKTSettings settingsWithAppToken:appToken]];
+    [SupportKit initWithSettings:[SKTSettings settingsWithAppToken:appToken]];
 }
 
 - (void) show:(CDVInvokedUrlCommand*)command {
