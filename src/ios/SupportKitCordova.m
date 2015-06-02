@@ -11,44 +11,63 @@
 
 @implementation SupportKitCordova
 
-- (void)init:(CDVInvokedUrlCommand*)command {
+- (void)init:(CDVInvokedUrlCommand *)command {
+    NSDictionary *settings = [command argumentAtIndex:0];
+    
+    SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
+    [sktSettingsObj setValuesForKeysWithDictionary:settings];
+    [SupportKit initWithSettings:sktSettingsObj];
 
-    NSString *appToken = [command.arguments objectAtIndex:0];
-    NSMutableDictionary *settingsDict = nil;
-
-    if([command.arguments count] > 1) {
-      settingsDict = [[command.arguments objectAtIndex:1 withDefault:nil] mutableCopy];
-    }
-
-    if (!settingsDict) {
-        settingsDict = [[NSMutableDictionary alloc] init];
-    }
-
-    [SupportKit initWithSettings:[SKTSettings settingsWithAppToken:appToken]];
+    [self sendSuccess:command];
 }
 
-- (void) show:(CDVInvokedUrlCommand*)command {
+- (void)show:(CDVInvokedUrlCommand *)command {
     [SupportKit show];
+
+    [self sendSuccess:command];
 }
 
-- (void)showConversation:(CDVInvokedUrlCommand*)command {
+- (void)showConversation:(CDVInvokedUrlCommand *)command {
     [SupportKit showConversation];
+
+    [self sendSuccess:command];
 }
 
-- (void)setNameAndEmail:(CDVInvokedUrlCommand*)command {
-    NSString *firstName = [command.arguments objectAtIndex:0];
-    NSString *lastName = [command.arguments objectAtIndex:1];
-    NSString *email = [command.arguments objectAtIndex:2];
-
-    SKTUser* curUser = [SKTUser currentUser];
-    curUser.firstName = firstName;
-    curUser.lastName = lastName;
-    curUser.email = email;
-}
-
-- (void)track:(CDVInvokedUrlCommand*)command {
-    NSString *eventName = [command.arguments objectAtIndex:0];
+- (void)track:(CDVInvokedUrlCommand *)command {
+    NSString *eventName = [command argumentAtIndex:0];
     [SupportKit track:eventName];
+
+    [self sendSuccess:command];
+}
+
+#pragma mark - User
+
+- (void)setUser:(CDVInvokedUrlCommand *)command {
+    NSDictionary *user = [command argumentAtIndex:0];
+    
+    SKTUser *currentUser = [SKTUser currentUser];
+    [currentUser setValuesForKeysWithDictionary:user];
+    
+    id timestamp = [user valueForKey:@"signedUpAt"];
+    if (timestamp && [timestamp isKindOfClass:[NSNumber class]]) {
+        [currentUser setSignedUpAt:[NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue]]];
+    }
+}
+
+- (void)setUserProperties:(CDVInvokedUrlCommand *)command {
+    NSDictionary *properties = [command argumentAtIndex:0];
+
+    SKTUser *currentUser = [SKTUser currentUser];
+    [currentUser addProperties:properties];
+
+    [self sendSuccess:command];
+}
+
+#pragma mark - Private Methods
+
+- (void)sendSuccess:(CDVInvokedUrlCommand *)command {
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end

@@ -10,14 +10,12 @@
 
 @interface SupportKitCordova : CDVPlugin
 
-- (void) init:(CDVInvokedUrlCommand*)command;
+- (void)init:(CDVInvokedUrlCommand *)command;
+- (void)show:(CDVInvokedUrlCommand *)command;
+- (void)showConversation:(CDVInvokedUrlCommand* )command;
+- (void)track:(CDVInvokedUrlCommand *)command;
 
-- (void) show:(CDVInvokedUrlCommand*)command;
-
-- (void) showConversation:(CDVInvokedUrlCommand*)command;
-
-- (void) setNameAndEmail:(CDVInvokedUrlCommand*)command;
-
-- (void) track:(CDVInvokedUrlCommand*)command;
+- (void)setUser:(CDVInvokedUrlCommand *)command;
+- (void)setUserProperties:(CDVInvokedUrlCommand *)command;
 
 @end

@@ -1,41 +1,26 @@
 var SupportKit = {
 
-    init: function (appToken, settings) {
-        if (settings && typeof settings === "object") {
-            cordova.exec (null, null, "SupportKitCordova", "init", [appToken, settings]);
-        } else {
-            cordova.exec (null, null, "SupportKitCordova", "init", [appToken]);
-        }
+    init: function(settings, success, error) {
+        cordova.exec(success, error, 'SupportKitCordova', 'init', [settings]);
     },
 
-    showConversation: function () {
-        cordova.exec (null, null, "SupportKitCordova", "showConversation", []);
+    show: function(success, error) {
+        cordova.exec(success, error, "SupportKitCordova", "show", []);
+    },
+    
+    showConversation: function(success, error) {
+        cordova.exec(success, error, "SupportKitCordova", "showConversation", []);
     },
 
-    show: function () {
-        cordova.exec (null, null, "SupportKitCordova", "show", []);
+    setUser: function(user, success, error) {  
+        cordova.exec(success, error, "SupportKitCordova", "setUser", [user]);
     },
 
-    setNameAndEmail: function (firstName, lastName, email) {
-        var lFirstName = "";
-        var lLastName = "";
-        var lEmail = "";
-
-        if (firstName && typeof firstName === "string") {
-            lFirstName = name;
-        }
-        if (lastName && typeof lastName === "string") {
-            lLastName = email;
-        }
-        if (email && typeof email === "string") {
-            lEmail = email;
-        }        
-        cordova.exec (null, null, "SupportKitCordova", "setNameAndEmail", [lFirstName, lLastName, lEmail]);
+    setUserProperties: function(properties, success, error) {  
+        cordova.exec(success, error, "SupportKitCordova", "setUserProperties", [properties]);
     },
 
-    track: function (eventName) {
-        if (eventName && typeof eventName === "string") {
-            cordova.exec (null, null, "SupportKitCordova", "track", [eventName]);
-        }
+    track: function(eventName, success, error) {
+        cordova.exec(success, error, "SupportKitCordova", "track", [eventName]);
     }
 };
