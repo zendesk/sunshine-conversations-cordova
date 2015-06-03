@@ -12,7 +12,8 @@
 @implementation SupportKitCordova
 
 - (void)init:(CDVInvokedUrlCommand *)command {
-    NSMutableDictionary *settings = [command argumentAtIndex:0];
+    NSMutableDictionary *settings = [[NSMutableDictionary alloc] 
+        initWithDictionary:[command argumentAtIndex:0]];
     
     SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
     
