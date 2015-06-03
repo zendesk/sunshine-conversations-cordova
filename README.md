@@ -14,7 +14,7 @@ Install SupportKit by adding the require bundle and frameworks: [http://docs.sup
 ## Init SupportKit with appToken
 
 	SupportKit.init({
-    	"appToken" : "your\_supportkit\_app\_token",
+    	"appToken" : "your-supportkit-app-token",
     	"conversationAccentColor" : "#FFFFFF" // optional, default is #00B0FF
 	});
 
