@@ -5,7 +5,7 @@ Cordova (PhoneGap) bindings for SupportKit
 
 ## Install SupportKit
 
-	Install SupportKit by adding the require bundle and frameworks: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+Install SupportKit by adding the require bundle and frameworks: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
 
 ## Install Cordova plugin
 
