@@ -37,6 +37,8 @@
     [self sendSuccess:command];
 }
 
+#pragma mark - Whispers
+
 - (void)track:(CDVInvokedUrlCommand *)command {
     NSString *eventName = [command argumentAtIndex:0];
     [SupportKit track:eventName];
@@ -63,6 +65,24 @@
 
     SKTUser *currentUser = [SKTUser currentUser];
     [currentUser addProperties:properties];
+
+    [self sendSuccess:command];
+}
+
+#pragma mark - Recommending Answers
+
+- (void)setDefaultRecommendations:(CDVInvokedUrlCommand *)command {
+    NSDictionary *recommendations = [command argumentAtIndex:0];
+
+    [SupportKit setDefaultRecommendations:recommendations];
+
+    [self sendSuccess:command];
+}
+
+- (void)setTopRecommendation:(CDVInvokedUrlCommand *)command {
+    NSString *recommendation = [command argumentAtIndex:0];
+
+    [SupportKit setTopRecommendation:recommendation];
 
     [self sendSuccess:command];
 }

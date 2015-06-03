@@ -46,3 +46,11 @@ See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.support
 ## Track events to show SupportKit Whispers
 
     SupportKit.track("Slapped kid");
+
+## Set Default Recommended Articles
+	
+	SupportKit.setDefaultRecommendations(["http://m.imdb.com/name/nm3042755", "http://m.imdb.com/name/nm2554352"])
+
+## Set Top Recommended Article
+
+	SupportKit.setTopRecommendation("https://supportkit.zendesk.com/hc/en-us/articles/201900704-Giving-your-users-the-right-answer-at-the-right-time")
