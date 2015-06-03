@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "name": "io.supportkit.sktcordovaplugin",
+    "cordova_name": "SupportKit",
+    "description": "SupportKit Cordova Plugin",
+    "keywords": [
+        "SupportKit",
+        "whisper",
+        "in-app messaging",
+        "support",
+        "help"
+    ],
+    "platforms": [
+        "ios"
+    ],
+    "engines": []
+}

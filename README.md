@@ -3,8 +3,11 @@ Cordova (PhoneGap) bindings for SupportKit
 
 # Basic Setup
 
-## Init SupportKit with appToken
+## Install with Plugman
 
+	cordova plugin add io.supportkit.sktcordovaplugin
+
+## Init SupportKit with appToken
 
 	SupportKit.init({
     	"appToken" : "your\_supportkit\_app\_token",
@@ -24,7 +27,7 @@ See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.support
 	SupportKit.setUser({
 		"firstName" : "Erlich",
 		"lastName" : "Bachman",
-		"email" : "erlich.bachman@hbo.com",
+		"email" : "erlich.bachman@aviato.com",
 		"signedUpAt" : 1397606400 // unix timestamp
 	});
 
@@ -32,7 +35,7 @@ See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.support
 
 	SupportKit.setUserProperties({
 		"tv_show" : "Silicon Valley",
-		"episodes" : ["Server Space, "The Lady", "Bad Money"],
+		"episodes" : "Server Space, The Lady, Bad Money",
 		"net_worth" : 1000000
 	});
 
