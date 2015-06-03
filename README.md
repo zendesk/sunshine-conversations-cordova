@@ -1,4 +1,56 @@
 # supportkit-cordova
 Cordova (PhoneGap) bindings for SupportKit
 
-Still experimental - not yet officially supported. Feel free to hack on this.
+# Basic Setup
+
+## Install SupportKit
+
+	Install SupportKit by adding the require bundle and frameworks: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+
+## Install Cordova plugin
+
+	cordova plugin add io.supportkit.sktcordovaplugin
+
+## Init SupportKit with appToken
+
+	SupportKit.init({
+    	"appToken" : "your\_supportkit\_app\_token",
+    	"conversationAccentColor" : "#FFFFFF" // optional, default is #00B0FF
+	});
+
+See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.supportkit.io/api/Classes/SKTSettings.html) for other properties you can set. 
+
+## Show SupportKit
+
+	SupportKit.show();
+
+# Awesome Setup
+
+## Add user info
+
+	SupportKit.setUser({
+		"firstName" : "Erlich",
+		"lastName" : "Bachman",
+		"email" : "erlich.bachman@aviato.com",
+		"signedUpAt" : 1397606400 // unix timestamp
+	});
+
+## Add custom user properties
+
+	SupportKit.setUserProperties({
+		"tv_show" : "Silicon Valley",
+		"episodes" : "Server Space, The Lady, Bad Money",
+		"net_worth" : 1000000
+	});
+
+## Track events to show SupportKit Whispers
+
+    SupportKit.track("Slapped kid");
+
+## Set Default Recommended Articles
+	
+	SupportKit.setDefaultRecommendations(["http://m.imdb.com/name/nm3042755", "http://m.imdb.com/name/nm2554352"])
+
+## Set Top Recommended Article
+
+	SupportKit.setTopRecommendation("https://supportkit.zendesk.com/hc/en-us/articles/201900704-Giving-your-users-the-right-answer-at-the-right-time")

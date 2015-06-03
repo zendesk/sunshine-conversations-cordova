@@ -22,5 +22,14 @@ var SupportKit = {
 
     track: function(eventName, success, error) {
         cordova.exec(success, error, "SupportKitCordova", "track", [eventName]);
+    },
+
+    setDefaultRecommendations: function(recommendations, success, error) {  
+        cordova.exec(success, error, "SupportKitCordova", "setDefaultRecommendations", [recommendations]);
+    },
+
+    setTopRecommendation: function(recommendation, success, error) {  
+        cordova.exec(success, error, "SupportKitCordova", "setTopRecommendation", [recommendation]);
     }
+    
 };

@@ -12,13 +12,18 @@
 @implementation SupportKitCordova
 
 - (void)init:(CDVInvokedUrlCommand *)command {
-    NSDictionary *settings = [command argumentAtIndex:0];
+    NSMutableDictionary *settings = [[NSMutableDictionary alloc] 
+        initWithDictionary:[command argumentAtIndex:0]];
     
     SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
+    
+    if ([settings valueForKey:@"conversationAccentColor"]) {
+        sktSettingsObj.conversationAccentColor = [SupportKitCordova colorFromHexString:[settings valueForKey:@"conversationAccentColor"]];
+        [settings removeObjectForKey:@"conversationAccentColor"];
+    }
+    
     [sktSettingsObj setValuesForKeysWithDictionary:settings];
     [SupportKit initWithSettings:sktSettingsObj];
-
-    [self sendSuccess:command];
 }
 
 - (void)show:(CDVInvokedUrlCommand *)command {
@@ -32,6 +37,8 @@
 
     [self sendSuccess:command];
 }
+
+#pragma mark - Whispers
 
 - (void)track:(CDVInvokedUrlCommand *)command {
     NSString *eventName = [command argumentAtIndex:0];
@@ -63,6 +70,24 @@
     [self sendSuccess:command];
 }
 
+#pragma mark - Recommending Answers
+
+- (void)setDefaultRecommendations:(CDVInvokedUrlCommand *)command {
+    NSDictionary *recommendations = [command argumentAtIndex:0];
+
+    [SupportKit setDefaultRecommendations:recommendations];
+
+    [self sendSuccess:command];
+}
+
+- (void)setTopRecommendation:(CDVInvokedUrlCommand *)command {
+    NSString *recommendation = [command argumentAtIndex:0];
+
+    [SupportKit setTopRecommendation:recommendation];
+
+    [self sendSuccess:command];
+}
+
 #pragma mark - Private Methods
 
 - (void)sendSuccess:(CDVInvokedUrlCommand *)command {
@@ -70,4 +95,12 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+// Assumes input like "#00FF00" (#RRGGBB).
++ (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
 @end

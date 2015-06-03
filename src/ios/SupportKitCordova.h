@@ -18,4 +18,6 @@
 - (void)setUser:(CDVInvokedUrlCommand *)command;
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command;
 
+- (void)setDefaultRecommendations:(CDVInvokedUrlCommand *)command;
+- (void)setTopRecommendation:(CDVInvokedUrlCommand *)command;
 @end
