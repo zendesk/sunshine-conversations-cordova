@@ -3,7 +3,11 @@ Cordova (PhoneGap) bindings for SupportKit
 
 # Basic Setup
 
-## Install with Plugman
+## Install SupportKit
+
+	Install SupportKit by adding the require bundle and frameworks: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+
+## Install Cordova plugin
 
 	cordova plugin add io.supportkit.sktcordovaplugin
 
@@ -39,6 +43,6 @@ See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.support
 		"net_worth" : 1000000
 	});
 
-## Track events to show whispers
+## Track events to show SupportKit Whispers
 
     SupportKit.track("Slapped kid");
