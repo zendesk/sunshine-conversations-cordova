@@ -11,12 +11,22 @@ Install SupportKit by adding the require bundle and frameworks: [http://docs.sup
 
 	cordova plugin add io.supportkit.sktcordovaplugin
 
+Then copy the [`supportkit-cordova.js`](https://github.com/supportkit/supportkit-cordova/blob/master/www/js/supportkit-cordova.js) file from the `www/js` directory of this repo into the `www` directory (or the directory of your choice) of your Cordova app.
+
+Then import the `supportkit-cordova.js` file in the `index.html` of your Cordova app:
+
+	<script type="text/javascript" src="supportkit-cordova.js"></script>
+
+**IMPORTANT**: This import must be made **AFTER** the import of `cordova.js`. 
+
 ## Init SupportKit with appToken
 
 	SupportKit.init({
     	"appToken" : "your-supportkit-app-token",
     	"conversationAccentColor" : "#FFFFFF" // optional, default is #00B0FF
 	});
+	
+**IMPORTANT**: This call or any other SupportKit calls must be made **AFTER** the `deviceready` event of Cordova.
 
 See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.supportkit.io/api/Classes/SKTSettings.html) for other properties you can set. 
 
