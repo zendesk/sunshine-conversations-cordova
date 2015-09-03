@@ -25,7 +25,6 @@
         <config-file target="config.xml" parent="/*">
             <feature name="SupportKitCordova">
                 <param name="android-package" value="io.supportkit.cordova.SupportKitCordova"/>
-                <param name="onload" value="true" />
             </feature>
         </config-file>
         <source-file src="src/android/SupportKitCordova.java" target-dir="src/io/supportkit/cordova" />
