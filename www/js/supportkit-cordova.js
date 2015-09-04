@@ -1,6 +1,7 @@
 var SupportKit = {
 
     init: function(settings, success, error) {
+    //Initialization on Android must be done in Application Class.
         cordova.exec(success, error, 'SupportKitCordova', 'init', [settings]);
     },
 
