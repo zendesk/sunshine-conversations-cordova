@@ -1,17 +1,15 @@
 # supportkit-cordova
-Cordova (PhoneGap) bindings for SupportKit
+Cordova (PhoneGap) bindings for [SupportKit](https://supportkit.io].
 
 # Basic Setup
 
 ## Install SupportKit
 
-Install SupportKit iOS or Android libraries
+Install SupportKit iOS or Android libraries,
 
-### iOS
-[http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+On iOS: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
 
-### Android
-[http://docs.supportkit.io/android/#adding-supportkit-to-your-app](http://docs.supportkit.io/android/#adding-supportkit-to-your-app)
+On Android: [http://docs.supportkit.io/android/#adding-supportkit-to-your-app](http://docs.supportkit.io/android/#adding-supportkit-to-your-app)
 
 ## Install Cordova plugin
 
@@ -52,7 +50,7 @@ See [http://docs.supportkit.io/api/android/](http://docs.supportkit.io/api/andro
 
 ## Show SupportKit
 
-Now, you're ready 
+Now, you're ready to show the SupportKit chat window.
 
 	SupportKit.show();
 
