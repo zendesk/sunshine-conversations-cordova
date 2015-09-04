@@ -57,7 +57,8 @@
     
     id timestamp = [user valueForKey:@"signedUpAt"];
     if (timestamp && [timestamp isKindOfClass:[NSNumber class]]) {
-        [currentUser setSignedUpAt:[NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue]]];
+        NSTimeInterval seconds = [timestamp doubleValue] / 1000; // covert from milliseconds to seconds
+        [currentUser setSignedUpAt:[NSDate dateWithTimeIntervalSince1970:seconds];
     }
 }
 
