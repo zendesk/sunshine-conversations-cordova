@@ -1,5 +1,5 @@
 # supportkit-cordova
-Cordova (PhoneGap) bindings for [SupportKit](https://supportkit.io].
+Cordova (PhoneGap) bindings for [SupportKit](https://supportkit.io).
 
 # Basic Setup
 
