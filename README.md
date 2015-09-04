@@ -5,11 +5,17 @@ Cordova (PhoneGap) bindings for SupportKit
 
 ## Install SupportKit
 
-Install SupportKit by adding the require bundle and frameworks: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+Install SupportKit iOS or Android libraries
+
+### iOS
+[http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+
+### Android
+[http://docs.supportkit.io/android/#adding-supportkit-to-your-app](http://docs.supportkit.io/android/#adding-supportkit-to-your-app)
 
 ## Install Cordova plugin
 
-	cordova plugin add io.supportkit.sktcordovaplugin
+	cordova plugin add io-supportkit-sktcordovaplugin
 
 Then copy the [`supportkit-cordova.js`](https://github.com/supportkit/supportkit-cordova/blob/master/www/js/supportkit-cordova.js) file from the `www/js` directory of this repo into the `www` directory (or the directory of your choice) of your Cordova app.
 

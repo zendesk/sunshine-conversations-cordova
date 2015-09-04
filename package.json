@@ -1,0 +1,37 @@
+{
+  "version": "1.1.1",
+  "name": "io-supportkit-sktcordovaplugin",
+  "cordova_name": "SupportKit",
+  "description": "SupportKit Cordova Plugin for iOS and Android",
+  "keywords": [
+    "SupportKit",
+    "messaging",
+    "chat",
+    "in-app",
+    "support",
+    "help",
+    "ecosystem:cordova"
+  ],
+  "platforms": [
+    "ios",
+    "android"
+  ],
+  "engines": [],
+  "cordova": {
+    "id": "io-supportkit-sktcordovaplugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supportkit/supportkit-cordova.git"
+  },
+  "author": "SupportKit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/supportkit/supportkit-cordova/issues"
+  },
+  "homepage": "https://github.com/supportkit/supportkit-cordova#readme"
+}

@@ -6,6 +6,8 @@ import io.supportkit.ui.ConversationActivity;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -21,8 +23,8 @@ public class SupportKitCordova extends CordovaPlugin {
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("init")) {
-            callbackContext.error("Initialize must be done from the main application");
-            return false;
+            Log.w("SupportKitCordova", "Initialize must be done from the Application Class");
+            return true;
         } else if (action.equals("show") || action.equals("showConversation")) {
             this.show(callbackContext);
         } else if (action.equals("setUser")) {
@@ -48,7 +50,7 @@ public class SupportKitCordova extends CordovaPlugin {
         try {
             JSONObject userInfo = args.getJSONObject(0);
             final User user = User.getCurrentUser();
-            
+
             if (userInfo.has("email")) {
                 user.setEmail(userInfo.getString("email"));
             }
