@@ -58,7 +58,7 @@
     id timestamp = [user valueForKey:@"signedUpAt"];
     if (timestamp && [timestamp isKindOfClass:[NSNumber class]]) {
         NSTimeInterval seconds = [timestamp doubleValue] / 1000; // covert from milliseconds to seconds
-        [currentUser setSignedUpAt:[NSDate dateWithTimeIntervalSince1970:seconds];
+        [currentUser setSignedUpAt:[NSDate dateWithTimeIntervalSince1970:seconds]];
     }
 }
 
@@ -74,7 +74,7 @@
 #pragma mark - Recommending Answers
 
 - (void)setDefaultRecommendations:(CDVInvokedUrlCommand *)command {
-    NSDictionary *recommendations = [command argumentAtIndex:0];
+    NSArray *recommendations = [command argumentAtIndex:0];
 
     [SupportKit setDefaultRecommendations:recommendations];
 
