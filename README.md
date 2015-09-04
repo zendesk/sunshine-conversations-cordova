@@ -17,29 +17,26 @@ Install SupportKit iOS or Android libraries
 
 	cordova plugin add io-supportkit-sktcordovaplugin
 
-Then copy the [`supportkit-cordova.js`](https://github.com/supportkit/supportkit-cordova/blob/master/www/js/supportkit-cordova.js) file from the `www/js` directory of this repo into the `www` directory (or the directory of your choice) of your Cordova app.
-
-Then import the `supportkit-cordova.js` file in the `index.html` of your Cordova app:
-
-	<script type="text/javascript" src="supportkit-cordova.js"></script>
-
-**IMPORTANT**: This import must be made **AFTER** the import of `cordova.js`. 
+You should now see supportkit-cordova.js and the SupportKitCordova source files in your project directory.
 
 ## Init SupportKit with appToken
 
 ### iOS
+
+In your javascript:
+
 	SupportKit.init({
     	"appToken" : "your-supportkit-app-token",
     	"conversationAccentColor" : "#FFFFFF" // optional, default is #00B0FF
 	});
 	
-**IMPORTANT**: This call or any other SupportKit calls must be made **AFTER** the `deviceready` event of Cordova.
+**IMPORTANT**: This call must be made **AFTER** the `deviceready` event of Cordova.
 
-See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.supportkit.io/api/Classes/SKTSettings.html) for init settings.
+See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.supportkit.io/api/Classes/SKTSettings.html) for other init settings.
 
 ### Android
 
-Init SupportKit in the Application class, for example:
+Init SupportKit(natively) in the Application class, for example:
 
 	public class MainApplication extends Application {
 	    public void onCreate() {
@@ -48,10 +45,14 @@ Init SupportKit in the Application class, for example:
 	    }
 	}
 
-See [http://docs.supportkit.io/api/android/](http://docs.supportkit.io/api/android/) for init settings.
+The javascript init call will not work in Android. It must be done natively.
+
+See [http://docs.supportkit.io/api/android/](http://docs.supportkit.io/api/android/) for other init settings.
 
 
 ## Show SupportKit
+
+Now, you're ready 
 
 	SupportKit.show();
 
