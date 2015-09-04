@@ -47,18 +47,19 @@ public class SupportKitCordova extends CordovaPlugin {
     private void setUser(JSONArray args, CallbackContext callbackContext) {
         try {
             JSONObject userInfo = args.getJSONObject(0);
-
+            final User user = User.getCurrentUser();
+            
             if (userInfo.has("email")) {
-                User.getCurrentUser().setEmail(userInfo.getString("email"));
+                user.setEmail(userInfo.getString("email"));
             }
             if (userInfo.has("firstName")) {
-                User.getCurrentUser().setFirstName(userInfo.getString("firstName"));
+                user.setFirstName(userInfo.getString("firstName"));
             }
             if (userInfo.has("lastName")) {
-                User.getCurrentUser().setLastName(userInfo.getString("lastName"));
+                user.setLastName(userInfo.getString("lastName"));
             }
             if (userInfo.has("signedUpAt")) {
-                User.getCurrentUser().setSignedUpAt(new Date(userInfo.getLong("signedUpAt")));
+                user.setSignedUpAt(new Date(userInfo.getLong("signedUpAt")));
             }
 
             callbackContext.success();
