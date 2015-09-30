@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/edwardchan/Projects/HelloWorld/hello5/platforms/android/CordovaLib/assets"/></dataSet><dataSet config="debug"><source path="/Users/edwardchan/Projects/HelloWorld/hello5/platforms/android/CordovaLib/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/edwardchan/Projects/supportkit-cordova-github/example/android/CordovaLib/assets"/></dataSet><dataSet config="debug"><source path="/Users/edwardchan/Projects/supportkit-cordova-github/example/android/CordovaLib/src/debug/assets"/></dataSet></merger>
