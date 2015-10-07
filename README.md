@@ -27,7 +27,7 @@ In your javascript:
     	"appToken" : "your-supportkit-app-token",
     	"conversationAccentColor" : "#FFFFFF" // optional, default is #00B0FF
 	});
-	
+
 **IMPORTANT**: This call must be made **AFTER** the `deviceready` event of Cordova.
 
 See [http://docs.supportkit.io/api/Classes/SKTSettings.html](http://docs.supportkit.io/api/Classes/SKTSettings.html) for other init settings.
@@ -78,7 +78,7 @@ Now, you're ready to show the SupportKit chat window.
     SupportKit.track("Slapped kid");
 
 ## Set Default Recommended Articles (iOS only)
-	
+
 	SupportKit.setDefaultRecommendations(["http://m.imdb.com/name/nm3042755", "http://m.imdb.com/name/nm2554352"])
 
 ## Set Top Recommended Article (iOS only)

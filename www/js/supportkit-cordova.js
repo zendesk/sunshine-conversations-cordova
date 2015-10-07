@@ -8,16 +8,16 @@ var SupportKit = {
     show: function(success, error) {
         cordova.exec(success, error, "SupportKitCordova", "show", []);
     },
-    
+
     showConversation: function(success, error) {
         cordova.exec(success, error, "SupportKitCordova", "showConversation", []);
     },
 
-    setUser: function(user, success, error) {  
+    setUser: function(user, success, error) {
         cordova.exec(success, error, "SupportKitCordova", "setUser", [user]);
     },
 
-    setUserProperties: function(properties, success, error) {  
+    setUserProperties: function(properties, success, error) {
         cordova.exec(success, error, "SupportKitCordova", "setUserProperties", [properties]);
     },
 
@@ -25,12 +25,14 @@ var SupportKit = {
         cordova.exec(success, error, "SupportKitCordova", "track", [eventName]);
     },
 
-    setDefaultRecommendations: function(recommendations, success, error) {  
+    setDefaultRecommendations: function(recommendations, success, error) {
         cordova.exec(success, error, "SupportKitCordova", "setDefaultRecommendations", [recommendations]);
     },
 
-    setTopRecommendation: function(recommendation, success, error) {  
+    setTopRecommendation: function(recommendation, success, error) {
         cordova.exec(success, error, "SupportKitCordova", "setTopRecommendation", [recommendation]);
     }
-    
+
 };
+
+module.exports = SupportKit;
