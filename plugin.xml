@@ -18,6 +18,20 @@
         </config-file>
         <header-file src="src/ios/SupportKitCordova.h" />
         <source-file src="src/ios/SupportKitCordova.m" />
+        
+        <framework src="CoreGraphics.framework" />
+      <framework src="CoreTelephony.framework" />
+      <framework src="CoreText.framework" />
+      <framework src="Foundation.framework" />
+      <framework src="libxml2.dylib" />
+      <framework src="OpenGLES.framework" />
+      <framework src="QuartzCore.framework" />
+      <framework src="SystemConfiguration.framework" />
+      <framework src="UIKit.framework" />
+      <framework src="AssetsLibrary.framework" />
+      <framework src="Photos.framework" />
+      <framework src="AVFoundation.framework" />
+        
     </platform>
 
     <!-- android -->
