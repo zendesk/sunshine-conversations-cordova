@@ -9,7 +9,7 @@
 
   <!-- <asset src="www/js/supportkit-cordova.js" target="js/supportkit-cordova.js" /> -->
 
-  <js-module name="Intercom" src="www/js/supportkit-cordova.js">
+  <js-module name="SupportKit" src="www/js/supportkit-cordova.js">
         <clobbers target="SupportKit" />
   </js-module>
 
