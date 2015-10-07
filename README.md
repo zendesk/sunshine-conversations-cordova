@@ -7,7 +7,7 @@ Cordova (PhoneGap) bindings for [SupportKit](https://supportkit.io).
 
 Install SupportKit iOS or Android libraries,
 
-On iOS: [http://docs.supportkit.io/#manual-method](http://docs.supportkit.io/#manual-method)
+On iOS: Nothing, you just need to init SupportKit (check below)
 
 On Android: [http://docs.supportkit.io/android/#adding-supportkit-to-your-app](http://docs.supportkit.io/android/#adding-supportkit-to-your-app)
 
