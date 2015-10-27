@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        document.getElementById('myBtn').addEventListener('click', SupportKit.showConversation, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
