@@ -1,14 +1,14 @@
 /*
- * SupportKitCordova.h
- * SupportKit Cordova/Phonegap Plugin
+ * SmoochCordova.h
+ * Smooch Cordova/Phonegap Plugin
  *
- * Learn more and sign up at http://supportkit.io
+ * Learn more and sign up at http://smooch.io
  *
 */
 
 #import <Cordova/CDV.h>
 
-@interface SupportKitCordova : CDVPlugin
+@interface SmoochCordova : CDVPlugin
 
 - (void)init:(CDVInvokedUrlCommand *)command;
 - (void)show:(CDVInvokedUrlCommand *)command;
@@ -18,6 +18,4 @@
 - (void)setUser:(CDVInvokedUrlCommand *)command;
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command;
 
-- (void)setDefaultRecommendations:(CDVInvokedUrlCommand *)command;
-- (void)setTopRecommendation:(CDVInvokedUrlCommand *)command;
 @end

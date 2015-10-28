@@ -1,7 +1,7 @@
-package io.supportkit.cordova;
+package io.smooch.cordova;
 
-import io.supportkit.core.*;
-import io.supportkit.ui.ConversationActivity;
+import io.smooch.core.*;
+import io.smooch.ui.ConversationActivity;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -18,12 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SupportKitCordova extends CordovaPlugin {
+public class SmoochCordova extends CordovaPlugin {
 
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("init")) {
-            Log.w("SupportKitCordova", "Initialize must be done from the Application Class");
+            Log.w("SmoochCordova", "Initialize must be done from the Application Class");
             return true;
         } else if (action.equals("show") || action.equals("showConversation")) {
             this.show(callbackContext);
@@ -34,7 +34,7 @@ public class SupportKitCordova extends CordovaPlugin {
         } else if (action.equals("track")) {
             this.track(args, callbackContext);
         } else {
-        	callbackContext.error("SupportKit method not supported");
+        	callbackContext.error("Smooch method not supported");
         	return false;
         }
 
@@ -85,7 +85,7 @@ public class SupportKitCordova extends CordovaPlugin {
     private void track(JSONArray args, CallbackContext callbackContext) {
         try {
             String eventName = args.getString(0);
-            SupportKit.track(eventName);
+            Smooch.track(eventName);
 
             callbackContext.success();
         } catch (JSONException e) {

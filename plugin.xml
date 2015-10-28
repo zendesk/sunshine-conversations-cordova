@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="io-supportkit-sktcordovaplugin" version="1.1.3">
+        id="io-smooch-smcordovaplugin" version="1.1.5">
 
-    <name>SupportKit</name>
-    <description>SupportKit Cordova Plugin for iOS and Android</description>
-    <keywords>SupportKit,messaging,chat,in-app,support,help</keywords>
+    <name>Smooch</name>
+    <description>Smooch Cordova Plugin for iOS and Android</description>
+    <keywords>Smooch,messaging,chat,in-app,support,help</keywords>
 
-    <asset src="www/js/supportkit-cordova.js" target="js/supportkit-cordova.js" />
+    
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="SupportKitCordova">
-                <param name="ios-package" value="SupportKitCordova"/>
+            <feature name="SmoochCordova">
+                <param name="ios-package" value="SmoochCordova"/>
             </feature>
         </config-file>
-        <header-file src="src/ios/SupportKitCordova.h" />
-        <source-file src="src/ios/SupportKitCordova.m" />
+        
+        <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
+        <header-file src="src/ios/SmoochCordova.h" />
+        <source-file src="src/ios/SmoochCordova.m" />
+
+        <framework src="CoreGraphics.framework" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="CoreText.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="libxml2.dylib" />
+        <framework src="OpenGLES.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="UIKit.framework" />
+        <framework src="AssetsLibrary.framework" />
+        <framework src="Photos.framework" />
+        <framework src="AVFoundation.framework" />
     </platform>
 
     <!-- android -->
     <platform name="android">
         <config-file target="config.xml" parent="/*">
-            <feature name="SupportKitCordova">
-                <param name="android-package" value="io.supportkit.cordova.SupportKitCordova"/>
+            <feature name="SmoochCordova">
+                <param name="android-package" value="io.smooch.cordova.SmoochCordova"/>
             </feature>
         </config-file>
-        <source-file src="src/android/SupportKitCordova.java" target-dir="src/io/supportkit/cordova" />
+        <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
+
+        <source-file src="src/android/SmoochCordova.java" target-dir="src/io/smooch/cordova" />
     </platform>
 
 </plugin>

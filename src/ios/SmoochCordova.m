@@ -1,15 +1,15 @@
 /*
- * SupportKitCordova.m
- * SupportKit Cordova/Phonegap Plugin
+ * SmoochCordova.m
+ * Smooch Cordova/Phonegap Plugin
  *
- * Learn more and sign up at http://supportkit.io
+ * Learn more and sign up at http://smooch.io
  *
 */
 
-#import "SupportKitCordova.h"
-#import <SupportKit/SupportKit.h>
+#import "SmoochCordova.h"
+#import <Smooch/Smooch.h>
 
-@implementation SupportKitCordova
+@implementation SmoochCordova
 
 - (void)init:(CDVInvokedUrlCommand *)command {
     NSMutableDictionary *settings = [[NSMutableDictionary alloc] 
@@ -18,22 +18,22 @@
     SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
     
     if ([settings valueForKey:@"conversationAccentColor"]) {
-        sktSettingsObj.conversationAccentColor = [SupportKitCordova colorFromHexString:[settings valueForKey:@"conversationAccentColor"]];
+        sktSettingsObj.conversationAccentColor = [SmoochCordova colorFromHexString:[settings valueForKey:@"conversationAccentColor"]];
         [settings removeObjectForKey:@"conversationAccentColor"];
     }
     
     [sktSettingsObj setValuesForKeysWithDictionary:settings];
-    [SupportKit initWithSettings:sktSettingsObj];
+    [Smooch initWithSettings:sktSettingsObj];
 }
 
 - (void)show:(CDVInvokedUrlCommand *)command {
-    [SupportKit show];
+    [Smooch show];
 
     [self sendSuccess:command];
 }
 
 - (void)showConversation:(CDVInvokedUrlCommand *)command {
-    [SupportKit showConversation];
+    [Smooch showConversation];
 
     [self sendSuccess:command];
 }
@@ -42,7 +42,7 @@
 
 - (void)track:(CDVInvokedUrlCommand *)command {
     NSString *eventName = [command argumentAtIndex:0];
-    [SupportKit track:eventName];
+    [Smooch track:eventName];
 
     [self sendSuccess:command];
 }
@@ -67,24 +67,6 @@
 
     SKTUser *currentUser = [SKTUser currentUser];
     [currentUser addProperties:properties];
-
-    [self sendSuccess:command];
-}
-
-#pragma mark - Recommending Answers
-
-- (void)setDefaultRecommendations:(CDVInvokedUrlCommand *)command {
-    NSArray *recommendations = [command argumentAtIndex:0];
-
-    [SupportKit setDefaultRecommendations:recommendations];
-
-    [self sendSuccess:command];
-}
-
-- (void)setTopRecommendation:(CDVInvokedUrlCommand *)command {
-    NSString *recommendation = [command argumentAtIndex:0];
-
-    [SupportKit setTopRecommendation:recommendation];
 
     [self sendSuccess:command];
 }
