@@ -34,17 +34,14 @@ buildscript {
     if (gradle.gradleVersion >= "2.2") {
         dependencies {
             classpath 'com.android.tools.build:gradle:1.0.0+'
-
         }
     } else if (gradle.gradleVersion >= "2.1") {
         dependencies {
             classpath 'com.android.tools.build:gradle:0.14.0+'
-
         }
     } else {
         dependencies {
             classpath 'com.android.tools.build:gradle:0.12.0+'
-
         }
     }
 }
@@ -54,8 +51,6 @@ repositories {
     mavenCentral()
     jcenter()
 }
-
-
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2.1'
@@ -125,7 +120,7 @@ if (ext.cdvReleaseSigningPropertiesFile == null && file('release-signing.propert
 }
 
 // Cast to appropriate types.
-ext.cdvBuildMultipleApks = !!cdvBuildMultipleApks;
+ext.cdvBuildMultipleApks = cdvBuildMultipleApks == null ? false : cdvBuildMultipleApks.toBoolean();
 ext.cdvMinSdkVersion = cdvMinSdkVersion == null ? null : Integer.parseInt('' + cdvMinSdkVersion)
 ext.cdvVersionCode = cdvVersionCode == null ? null : Integer.parseInt('' + cdvVersionCode)
 
@@ -159,11 +154,8 @@ task cdvPrintProps << {
     println('cdvDebugSigningPropertiesFile=' + cdvDebugSigningPropertiesFile)
     println('cdvBuildArch=' + cdvBuildArch)
     println('computedVersionCode=' + android.defaultConfig.versionCode)
-    if (android.productFlavors.has('armv7')) {
-        println('computedArmv7VersionCode=' + android.productFlavors.armv7.versionCode)
-    }
-    if (android.productFlavors.has('x86')) {
-        println('computedx86VersionCode=' + android.productFlavors.x86.versionCode)
+    android.productFlavors.each { flavor ->
+        println('computed' + flavor.name.capitalize() + 'VersionCode=' + flavor.versionCode)
     }
 }
 
@@ -252,16 +244,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'io.smooch:core:latest.release'
+    compile 'io.smooch:ui:latest.release'
     // SUB-PROJECT DEPENDENCIES START
-    compile 'com.google.android.gms:play-services-gcm:7.5.0'
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
-    compile 'io.supportkit:core:latest.release'
-    compile 'io.supportkit:ui:latest.release'
-    debugCompile project(path: ":CordovaLib", configuration: "debug")
-    releaseCompile project(path: ":CordovaLib", configuration: "release")
+    debugCompile project(path: "CordovaLib", configuration: "debug")
+    releaseCompile project(path: "CordovaLib", configuration: "release")
     // SUB-PROJECT DEPENDENCIES END
-
 }
 
 def promptForReleaseKeyPassword() {

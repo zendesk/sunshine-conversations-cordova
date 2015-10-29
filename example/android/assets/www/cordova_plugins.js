@@ -3,7 +3,7 @@ module.exports = [];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "io.supportkit.SKTCordovaPlugin": "1.0.0"
+    "io-smooch-smcordovaplugin": "1.1.5"
 }
 // BOTTOM OF METADATA
 });
