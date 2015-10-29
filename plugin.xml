@@ -7,7 +7,7 @@
     <description>Smooch Cordova Plugin for iOS and Android</description>
     <keywords>Smooch,messaging,chat,in-app,support,help</keywords>
 
-    
+    <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />    
 
     <!-- ios -->
     <platform name="ios">
@@ -16,7 +16,7 @@
                 <param name="ios-package" value="SmoochCordova"/>
             </feature>
         </config-file>
-        
+
         <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
         <header-file src="src/ios/SmoochCordova.h" />
         <source-file src="src/ios/SmoochCordova.m" />

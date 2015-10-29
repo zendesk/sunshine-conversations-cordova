@@ -1,5 +1,5 @@
 {
-  "version": "1.1.4",
+  "version": "1.1.5",
   "name": "io-smooch-smcordovaplugin",
   "cordova_name": "Smooch",
   "description": "Smooch Cordova Plugin for iOS and Android",
