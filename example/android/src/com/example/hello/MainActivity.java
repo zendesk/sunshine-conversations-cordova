@@ -19,16 +19,8 @@
 
 package com.example.hello;
 
-import android.app.Application;
 import android.os.Bundle;
 import org.apache.cordova.*;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import io.supportkit.core.SupportKit;
-import io.supportkit.core.User;
 
 public class MainActivity extends CordovaActivity
 {
@@ -40,4 +32,3 @@ public class MainActivity extends CordovaActivity
         loadUrl(launchUrl);
     }
 }
-
