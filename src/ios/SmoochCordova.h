@@ -12,7 +12,6 @@
 
 - (void)init:(CDVInvokedUrlCommand *)command;
 - (void)show:(CDVInvokedUrlCommand *)command;
-- (void)showConversation:(CDVInvokedUrlCommand* )command;
 - (void)track:(CDVInvokedUrlCommand *)command;
 
 - (void)setUser:(CDVInvokedUrlCommand *)command;

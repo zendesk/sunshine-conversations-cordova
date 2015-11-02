@@ -1,4 +1,4 @@
-# smooch-cordova
+		# smooch-cordova
 Cordova (PhoneGap) bindings for [Smooch](https://smooch.io).
 
 # Basic Setup
@@ -30,7 +30,7 @@ In your javascript:
 	
 **IMPORTANT**: This call must be made **AFTER** the `deviceready` event of Cordova.
 
-See [http://docs.smooch.io/api/Classes/SKTSettings.html](http://docs.smooch.io/api/Classes/SKTSettings.html) for other init settings.
+See [http://docs.smooch.io/api/ios/Classes/SKTSettings.html](http://docs.smooch.io/api/ios/Classes/SKTSettings.html) for other init settings.
 
 ### Android
 
