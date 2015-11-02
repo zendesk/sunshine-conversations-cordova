@@ -32,12 +32,6 @@
     [self sendSuccess:command];
 }
 
-- (void)showConversation:(CDVInvokedUrlCommand *)command {
-    [Smooch showConversation];
-
-    [self sendSuccess:command];
-}
-
 #pragma mark - Whispers
 
 - (void)track:(CDVInvokedUrlCommand *)command {
