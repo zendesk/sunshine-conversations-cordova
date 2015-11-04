@@ -7,7 +7,11 @@
     <description>Smooch Cordova Plugin for iOS and Android</description>
     <keywords>Smooch,messaging,chat,in-app,support,help</keywords>
 
-    <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />    
+
+    <js-module name="Smooch" src="www/js/smooch-cordova.js">
+        <clobbers target="Smooch" />
+    </js-module>
+
 
     <!-- ios -->
     <platform name="ios">
@@ -17,7 +21,7 @@
             </feature>
         </config-file>
 
-        <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
+
         <header-file src="src/ios/SmoochCordova.h" />
         <source-file src="src/ios/SmoochCordova.m" />
 
@@ -42,9 +46,11 @@
                 <param name="android-package" value="io.smooch.cordova.SmoochCordova"/>
             </feature>
         </config-file>
-        <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
 
         <source-file src="src/android/SmoochCordova.java" target-dir="src/io/smooch/cordova" />
+
+        <framework src="src/android/Smooch.gradle" custom="true" type="gradleReference" />
+
     </platform>
 
 </plugin>
