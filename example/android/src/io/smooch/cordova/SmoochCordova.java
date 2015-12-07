@@ -25,7 +25,7 @@ public class SmoochCordova extends CordovaPlugin {
         if (action.equals("init")) {
             Log.w("SmoochCordova", "Initialize must be done from the Application Class");
             return true;
-        } else if (action.equals("show") || action.equals("showConversation")) {
+        } else if (action.equals("show")) {
             this.show(callbackContext);
         } else if (action.equals("setUser")) {
             this.setUser(args, callbackContext);

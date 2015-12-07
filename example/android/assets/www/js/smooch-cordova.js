@@ -9,10 +9,6 @@ var Smooch = {
         cordova.exec(success, error, "SmoochCordova", "show", []);
     },
     
-    showConversation: function(success, error) {
-        cordova.exec(success, error, "SmoochCordova", "showConversation", []);
-    },
-
     setUser: function(user, success, error) {  
         cordova.exec(success, error, "SmoochCordova", "setUser", [user]);
     },
