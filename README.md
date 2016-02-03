@@ -1,4 +1,4 @@
-		# smooch-cordova
+# smooch-cordova
 Cordova (PhoneGap) bindings for [Smooch](https://smooch.io).
 
 # Basic Setup
