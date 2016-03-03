@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="io-smooch-smcordovaplugin" version="1.1.5">
+        id="cordova-plugin-smooch" version="1.2.0">
 
     <name>Smooch</name>
     <description>Smooch Cordova Plugin for iOS and Android</description>
     <keywords>Smooch,messaging,chat,in-app,support,help</keywords>
 
-    <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />    
+    <js-module name="Smooch" src="www/js/smooch-cordova.js">
+        <clobbers target="Smooch" />
+    </js-module>
 
     <!-- ios -->
     <platform name="ios">
@@ -17,7 +19,6 @@
             </feature>
         </config-file>
 
-        <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
         <header-file src="src/ios/SmoochCordova.h" />
         <source-file src="src/ios/SmoochCordova.m" />
 
@@ -37,14 +38,43 @@
 
     <!-- android -->
     <platform name="android">
+
         <config-file target="config.xml" parent="/*">
             <feature name="SmoochCordova">
                 <param name="android-package" value="io.smooch.cordova.SmoochCordova"/>
             </feature>
         </config-file>
-        <asset src="www/js/smooch-cordova.js" target="js/smooch-cordova.js" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <permission
+                android:name="io.smooch.cordova.permission.C2D_MESSAGE"
+                android:protectionLevel="signature"/>
+            <uses-permission android:name="android.permission.WAKE_LOCK"/>
+            <uses-permission android:name="io.smooch.cordova.permission.C2D_MESSAGE"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <receiver
+                android:name="com.google.android.gms.gcm.GcmReceiver"
+                android:exported="true"
+                android:permission="com.google.android.c2dm.permission.SEND">
+                <intent-filter>
+                    <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                    <category android:name="io.smooch.cordova"/>
+                </intent-filter>
+                <intent-filter>
+                    <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                </intent-filter>
+            </receiver>
+        </config-file>
 
         <source-file src="src/android/SmoochCordova.java" target-dir="src/io/smooch/cordova" />
+        <source-file src="src/android/SmoochApplication.java" target-dir="src/io/smooch/cordova" />
+
+        <hook type="after_plugin_install" src="scripts/afterInstall.js" />
+        <hook type="before_plugin_uninstall" src="scripts/beforeUninstall.js" />
+
+        <framework src="src/android/Smooch.gradle" custom="true" type="gradleReference" />
     </platform>
 
 </plugin>
