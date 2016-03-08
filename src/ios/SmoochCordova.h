@@ -13,6 +13,8 @@
 - (void)init:(CDVInvokedUrlCommand *)command;
 - (void)show:(CDVInvokedUrlCommand *)command;
 - (void)track:(CDVInvokedUrlCommand *)command;
+- (void)login:(CDVInvokedUrlCommand *)command;
+- (void)logout:(CDVInvokedUrlCommand *)command;
 
 - (void)setUser:(CDVInvokedUrlCommand *)command;
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command;

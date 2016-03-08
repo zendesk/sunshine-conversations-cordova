@@ -12,22 +12,37 @@
 @implementation SmoochCordova
 
 - (void)init:(CDVInvokedUrlCommand *)command {
-    NSMutableDictionary *settings = [[NSMutableDictionary alloc] 
+    NSMutableDictionary *settings = [[NSMutableDictionary alloc]
         initWithDictionary:[command argumentAtIndex:0]];
-    
+
     SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
-    
+
     if ([settings valueForKey:@"conversationAccentColor"]) {
         sktSettingsObj.conversationAccentColor = [SmoochCordova colorFromHexString:[settings valueForKey:@"conversationAccentColor"]];
         [settings removeObjectForKey:@"conversationAccentColor"];
     }
-    
+
     [sktSettingsObj setValuesForKeysWithDictionary:settings];
     [Smooch initWithSettings:sktSettingsObj];
 }
 
 - (void)show:(CDVInvokedUrlCommand *)command {
     [Smooch show];
+
+    [self sendSuccess:command];
+}
+
+- (void)login:(CDVInvokedUrlCommand *)command {
+    NSString *userId = [command argumentAtIndex:0];
+    NSString *jwt = [command argumentAtIndex:1];
+
+    [Smooch login:userId jwt:jwt];
+
+    [self sendSuccess:command];
+}
+
+- (void)logout:(CDVInvokedUrlCommand *)command {
+    [Smooch logout];
 
     [self sendSuccess:command];
 }
@@ -45,10 +60,10 @@
 
 - (void)setUser:(CDVInvokedUrlCommand *)command {
     NSDictionary *user = [command argumentAtIndex:0];
-    
+
     SKTUser *currentUser = [SKTUser currentUser];
     [currentUser setValuesForKeysWithDictionary:user];
-    
+
     id timestamp = [user valueForKey:@"signedUpAt"];
     if (timestamp && [timestamp isKindOfClass:[NSNumber class]]) {
         NSTimeInterval seconds = [timestamp doubleValue] / 1000; // covert from milliseconds to seconds
