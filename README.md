@@ -6,6 +6,7 @@ Cordova (PhoneGap) bindings for [Smooch](https://smooch.io).
 ## Install Smooch
 
 For iOS: [http://docs.smooch.io/#manual-method](http://docs.smooch.io/#manual-method)
+
 For Android: Gradle does the work for you!
 
 ## Install Cordova plugin

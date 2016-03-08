@@ -14,13 +14,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SmoochCordova extends CordovaPlugin {
 
-	@Override
+    @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("init")) {
             Log.w("SmoochCordova", "Initialize must be done from the Application Class");
@@ -33,9 +34,13 @@ public class SmoochCordova extends CordovaPlugin {
             this.setUserProperties(args, callbackContext);
         } else if (action.equals("track")) {
             this.track(args, callbackContext);
+        } else if (action.equals("login")) {
+            this.login(args, callbackContext);
+        } else if (action.equals("logout")) {
+            this.logout(callbackContext);
         } else {
-        	callbackContext.error("Smooch method not supported");
-        	return false;
+            callbackContext.error("Smooch method not supported");
+            return false;
         }
 
         return true;
@@ -94,19 +99,44 @@ public class SmoochCordova extends CordovaPlugin {
 
     }
 
+    private void login(JSONArray args, CallbackContext callbackContext) {
+        try {
+            final String userId = args.getString(0);
+            String jwt = args.getString(1);
+
+            if (userId.equals("null")) {
+                Log.w("SmoochCordova", "You must provide a userId when logging in.");
+                return;
+            }
+
+            if (jwt.equals("null")) {
+                jwt = null;
+            }
+
+            Smooch.login(userId, jwt);
+
+            callbackContext.success();
+        } catch (JSONException e) {
+            callbackContext.error(e.getMessage());
+        }
+    }
+
+    private void logout(CallbackContext callbackContext) {
+        Smooch.logout();
+        callbackContext.success();
+    }
+
     private static Map<String, Object> toMap(JSONObject object) throws JSONException {
         Map<String, Object> map = new HashMap<String, Object>();
 
         Iterator<String> keysItr = object.keys();
-        while(keysItr.hasNext()) {
+        while (keysItr.hasNext()) {
             String key = keysItr.next();
             Object value = object.get(key);
 
-            if(value instanceof JSONArray) {
+            if (value instanceof JSONArray) {
                 value = toList((JSONArray) value);
-            }
-
-            else if(value instanceof JSONObject) {
+            } else if (value instanceof JSONObject) {
                 value = toMap((JSONObject) value);
             }
             map.put(key, value);
@@ -116,13 +146,11 @@ public class SmoochCordova extends CordovaPlugin {
 
     private static List<Object> toList(JSONArray array) throws JSONException {
         List<Object> list = new ArrayList<Object>();
-        for(int i = 0; i < array.length(); i++) {
+        for (int i = 0; i < array.length(); i++) {
             Object value = array.get(i);
-            if(value instanceof JSONArray) {
+            if (value instanceof JSONArray) {
                 value = toList((JSONArray) value);
-            }
-
-            else if(value instanceof JSONObject) {
+            } else if (value instanceof JSONObject) {
                 value = toMap((JSONObject) value);
             }
             list.add(value);
