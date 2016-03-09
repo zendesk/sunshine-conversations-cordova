@@ -76,3 +76,15 @@ Smooch.setUserProperties({
 ```js
 Smooch.track("Slapped kid");
 ```
+
+## Login
+
+With JWT:
+```js
+Smooch.login("userId", "jwt");
+```
+
+Without:
+```js
+Smooch.login("userId");
+```
