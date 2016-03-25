@@ -11,7 +11,7 @@ For Android: Gradle does the work for you!
 
 ## Install Cordova plugin
 
-cordova plugin add cordova-plugin-smooch
+cordova plugin add smooch-cordova
 
 You should now see smooch-cordova.js and the SmoochCordova source files in your project directory.
 
