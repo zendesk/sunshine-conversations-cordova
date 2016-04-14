@@ -34,7 +34,9 @@ See [http://docs.smooch.io/api/ios/Classes/SKTSettings.html](http://docs.smooch.
 
 ### Android
 
-In `io.smooch.cordova.SmoochApplication`, change `<your_app_token>` to your app token.
+In `io.smooch.cordova.SmoochApplication.java`, change `<your_app_token>` to your app token. This file is located inside the `src` folder of the android project.
+
+Locate the file called AndroidManifest.xml in the root of your Android project. Inside the `<application>` tag, add `android:name="io.smooch.cordova.SmoochApplication"`
 
 That's it!
 See [http://docs.smooch.io/api/android/](http://docs.smooch.io/api/android/) for other init settings.
