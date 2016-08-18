@@ -45,29 +45,6 @@
             </feature>
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <permission
-                android:name="io.smooch.cordova.permission.C2D_MESSAGE"
-                android:protectionLevel="signature"/>
-            <uses-permission android:name="android.permission.WAKE_LOCK"/>
-            <uses-permission android:name="io.smooch.cordova.permission.C2D_MESSAGE"/>
-        </config-file>
-
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <receiver
-                android:name="com.google.android.gms.gcm.GcmReceiver"
-                android:exported="true"
-                android:permission="com.google.android.c2dm.permission.SEND">
-                <intent-filter>
-                    <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                    <category android:name="io.smooch.cordova"/>
-                </intent-filter>
-                <intent-filter>
-                    <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-                </intent-filter>
-            </receiver>
-        </config-file>
-
         <source-file src="src/android/SmoochCordova.java" target-dir="src/io/smooch/cordova" />
         <source-file src="src/android/SmoochApplication.java" target-dir="src/io/smooch/cordova" />
 

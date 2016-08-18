@@ -42,7 +42,6 @@ That's it!
 See [http://docs.smooch.io/api/android/](http://docs.smooch.io/api/android/) for other init settings.
 
 To enable push notifications, follow the docs [here](http://docs.smooch.io/android/#configuring-push-notifications).
-You can safely ignore Step 3! That work has been done for you :)
 
 ## Show Smooch
 
