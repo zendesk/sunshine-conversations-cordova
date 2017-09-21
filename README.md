@@ -75,11 +75,6 @@ Smooch.setUserProperties({
 });
 ```
 
-## Track events to show Smooch Whispers
-```js
-Smooch.track("Slapped kid");
-```
-
 ## Login
 
 With JWT:
