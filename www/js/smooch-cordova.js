@@ -16,10 +16,6 @@ var Smooch = {
     cordova.exec(success, error, "SmoochCordova", "setUserProperties", [properties]);
   },
 
-  track: function(eventName, success, error) {
-    cordova.exec(success, error, "SmoochCordova", "track", [eventName]);
-  },
-
   login: function(userId, jwt, success, error) {
     cordova.exec(success, error, "SmoochCordova", "login", [userId, jwt]);
   },

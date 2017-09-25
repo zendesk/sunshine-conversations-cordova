@@ -17,7 +17,7 @@ cordova plugin add smooch-cordova
 
 You should now see smooch-cordova.js and the SmoochCordova source files in your project directory.
 
-## Init Smooch with appToken
+## Init Smooch with appId
 
 ### iOS
 
@@ -25,7 +25,7 @@ In your javascript:
 
 ```js
 Smooch.init({
-  	"appToken" : "your-smooch-app-token",
+  	"appId" : "your-smooch-app-id",
   	"conversationAccentColor" : "#FFFFFF" // optional, default is #00B0FF
 });
 ```
@@ -36,7 +36,7 @@ See [http://docs.smooch.io/api/ios/Classes/SKTSettings.html](http://docs.smooch.
 
 ### Android
 
-In `io.smooch.cordova.SmoochApplication.java`, change `<your_app_token>` to your app token. This file is located inside the `src` folder of the android project.
+In `io.smooch.cordova.SmoochApplication.java`, change `<your_app_id>` to your app id. This file is located inside the `src` folder of the android project.
 
 Locate the file called AndroidManifest.xml in the root of your Android project. Inside the `<application>` tag, add `android:name="io.smooch.cordova.SmoochApplication"`
 
@@ -73,11 +73,6 @@ Smooch.setUserProperties({
 	"episodes" : "Server Space, The Lady, Bad Money",
 	"net_worth" : 1000000
 });
-```
-
-## Track events to show Smooch Whispers
-```js
-Smooch.track("Slapped kid");
 ```
 
 ## Login
