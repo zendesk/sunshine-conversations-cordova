@@ -23,12 +23,17 @@
     }
 
     [sktSettingsObj setValuesForKeysWithDictionary:settings];
-    [Smooch initWithSettings:sktSettingsObj];
+    [Smooch initWithSettings:sktSettingsObj completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+        if(!error){
+            [self sendSuccess:command];
+        } else {
+            [self sendFailure:command];
+        }
+    }];
 }
 
 - (void)show:(CDVInvokedUrlCommand *)command {
     [Smooch show];
-
     [self sendSuccess:command];
 }
 
@@ -36,24 +41,23 @@
     NSString *userId = [command argumentAtIndex:0];
     NSString *jwt = [command argumentAtIndex:1];
 
-    [Smooch login:userId jwt:jwt];
-
-    [self sendSuccess:command];
+    [Smooch login:userId jwt:jwt completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+        if(!error){
+            [self sendSuccess:command];
+        } else {
+            [self sendFailure:command];
+        }
+    }];
 }
 
 - (void)logout:(CDVInvokedUrlCommand *)command {
-    [Smooch logout];
-
-    [self sendSuccess:command];
-}
-
-#pragma mark - Whispers
-
-- (void)track:(CDVInvokedUrlCommand *)command {
-    NSString *eventName = [command argumentAtIndex:0];
-    [Smooch track:eventName];
-
-    [self sendSuccess:command];
+    [Smooch logoutWithCompletionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+        if(!error){
+            [self sendSuccess:command];
+        } else {
+            [self sendFailure:command];
+        }
+    }];
 }
 
 #pragma mark - User
@@ -69,6 +73,8 @@
         NSTimeInterval seconds = [timestamp doubleValue] / 1000; // covert from milliseconds to seconds
         [currentUser setSignedUpAt:[NSDate dateWithTimeIntervalSince1970:seconds]];
     }
+
+    [self sendSuccess:command];
 }
 
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command {
@@ -84,6 +90,11 @@
 
 - (void)sendSuccess:(CDVInvokedUrlCommand *)command {
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)sendFailure:(CDVInvokedUrlCommand *)command {
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 

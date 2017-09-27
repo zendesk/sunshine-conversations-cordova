@@ -25,6 +25,7 @@ public class SmoochCordova extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("init")) {
             Log.w("SmoochCordova", "Initialize must be done from the Application Class");
+            callbackContext.success();
             return true;
         } else if (action.equals("show")) {
             this.show(callbackContext);
@@ -32,8 +33,6 @@ public class SmoochCordova extends CordovaPlugin {
             this.setUser(args, callbackContext);
         } else if (action.equals("setUserProperties")) {
             this.setUserProperties(args, callbackContext);
-        } else if (action.equals("track")) {
-            this.track(args, callbackContext);
         } else if (action.equals("login")) {
             this.login(args, callbackContext);
         } else if (action.equals("logout")) {
@@ -87,19 +86,7 @@ public class SmoochCordova extends CordovaPlugin {
         }
     }
 
-    private void track(JSONArray args, CallbackContext callbackContext) {
-        try {
-            String eventName = args.getString(0);
-            Smooch.track(eventName);
-
-            callbackContext.success();
-        } catch (JSONException e) {
-            callbackContext.error(e.getMessage());
-        }
-
-    }
-
-    private void login(JSONArray args, CallbackContext callbackContext) {
+    private void login(JSONArray args, final CallbackContext callbackContext) {
         try {
             final String userId = args.getString(0);
             String jwt = args.getString(1);
@@ -110,20 +97,36 @@ public class SmoochCordova extends CordovaPlugin {
             }
 
             if (jwt.equals("null")) {
-                jwt = null;
+                Log.w("SmoochCordova", "You must provide a jwt when logging in.");
+                return;
             }
 
-            Smooch.login(userId, jwt);
-
-            callbackContext.success();
+            Smooch.login(userId, jwt, new SmoochCallback() {
+                @Override
+                public void run(Response response) {
+                    if (response.getError() == null) {
+                        callbackContext.success();
+                    } else {
+                        callbackContext.error(response.getError());
+                    }
+                }
+            });
         } catch (JSONException e) {
             callbackContext.error(e.getMessage());
         }
     }
 
-    private void logout(CallbackContext callbackContext) {
-        Smooch.logout();
-        callbackContext.success();
+    private void logout(final CallbackContext callbackContext) {
+        Smooch.logout(new SmoochCallback() {
+            @Override
+            public void run(Response response) {
+                if (response.getError() == null) {
+                    callbackContext.success();
+                } else {
+                    callbackContext.error(response.getError());
+                }
+            }
+        });
     }
 
     private static Map<String, Object> toMap(JSONObject object) throws JSONException {

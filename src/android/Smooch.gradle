@@ -1,4 +1,13 @@
 dependencies {
-    compile 'io.smooch:core:latest.release'
-    compile 'io.smooch:ui:latest.release'
+    compile 'io.smooch:core:5.+'
+    compile 'io.smooch:ui:5.+'
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
 }
