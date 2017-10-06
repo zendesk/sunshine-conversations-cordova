@@ -86,3 +86,17 @@ Without:
 ```js
 Smooch.login("userId");
 ```
+
+# Common errors
+
+If you stumble upon this error when building for android:
+```
+Error: /yourapp/platforms/android/gradlew: Command failed with exit code 1 Error output:
+/yourapp/platforms/android/build/intermediates/res/merged/debug/values-v26/values-v26.xml:15:21-54: AAPT: No resource found that matches the given name: attr 'android:keyboardNavigationCluster'.
+
+/yourapp/platforms/android/build/intermediates/res/merged/debug/values-v26/values-v26.xml:15: error: Error: No resource found that matches the given name: attr 'android:keyboardNavigationCluster'.
+
+FAILURE: Build failed with an exception.
+```
+
+Make sure to set the target to `android-26` in `platforms/android/project-properties`
