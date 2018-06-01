@@ -2,6 +2,7 @@
   "name": "smooch-cordova",
   "version": "2.0.0",
   "description": "Smooch Cordova Plugin for iOS and Android",
+  "license": "MIT",
   "cordova": {
     "id": "cordova-plugin-smooch",
     "platforms": [
@@ -25,7 +26,6 @@
     "cordova-android"
   ],
   "author": "Smooch",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/smooch/smooch-cordova/issues"
   },
