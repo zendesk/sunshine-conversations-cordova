@@ -1,0 +1,1 @@
+Please note that while issues can still be opened for this respository, it is not currently being maintained and it is unlikely that issues will be addressed until a new maintainer is found.
