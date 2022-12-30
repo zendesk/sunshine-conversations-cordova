@@ -6,6 +6,7 @@ import io.smooch.ui.ConversationActivity;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -46,8 +47,13 @@ public class SmoochCordova extends CordovaPlugin {
     }
 
     private void show(CallbackContext callbackContext) {
-        ConversationActivity.show(this.cordova.getActivity());
+//        ConversationActivity.show(this.cordova.getActivity());
+        ConversationActivity.builder()
+                .withFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .show(this.cordova.getActivity()
+                .getApplicationContext());
         callbackContext.success();
+
     }
 
     private void setUser(JSONArray args, CallbackContext callbackContext) {
@@ -78,7 +84,8 @@ public class SmoochCordova extends CordovaPlugin {
         try {
             Map<String, Object> customProps = new HashMap<String, Object>();
             customProps = toMap(args.getJSONObject(0));
-            User.getCurrentUser().addProperties(customProps);
+            User.getCurrentUser().addMetadata(customProps);
+                    //.addProperties(customProps);
 
             callbackContext.success();
         } catch (JSONException e) {
