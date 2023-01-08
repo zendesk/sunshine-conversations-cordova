@@ -12,24 +12,8 @@
 @implementation SmoochCordova
 
 - (void)init:(CDVInvokedUrlCommand *)command {
-    NSMutableDictionary *settings = [[NSMutableDictionary alloc]
-        initWithDictionary:[command argumentAtIndex:0]];
-
-    SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
-
-    if ([settings valueForKey:@"conversationAccentColor"]) {
-        sktSettingsObj.conversationAccentColor = [SmoochCordova colorFromHexString:[settings valueForKey:@"conversationAccentColor"]];
-        [settings removeObjectForKey:@"conversationAccentColor"];
-    }
-
-    [sktSettingsObj setValuesForKeysWithDictionary:settings];
-    [Smooch initWithSettings:sktSettingsObj completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
-        if(!error){
-            [self sendSuccess:command];
-        } else {
-            [self sendFailure:command];
-        }
-    }];
+    NSLog(@"You have to Initialize Zingle in AppDelegate");
+    [self sendSuccess:command];
 }
 
 - (void)show:(CDVInvokedUrlCommand *)command {
@@ -81,7 +65,7 @@
     NSDictionary *properties = [command argumentAtIndex:0];
 
     SKTUser *currentUser = [SKTUser currentUser];
-    [currentUser addProperties:properties];
+    [currentUser addMetadata:properties];
 
     [self sendSuccess:command];
 }
