@@ -70,6 +70,17 @@
     [self sendSuccess:command];
 }
 
+- (void)getUserProperties:(CDVInvokedUrlCommand*)command {
+    NSLog(@"Zingle: getUserProperties");
+    
+    SKTUser *currentUser = [SKTUser currentUser];
+    
+    NSDictionary *properties = [currentUser metadata];
+    
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:properties];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 #pragma mark - Private Methods
 
 - (void)sendSuccess:(CDVInvokedUrlCommand *)command {

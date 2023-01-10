@@ -34,6 +34,8 @@ public class SmoochCordova extends CordovaPlugin {
             this.setUser(args, callbackContext);
         } else if (action.equals("setUserProperties")) {
             this.setUserProperties(args, callbackContext);
+        } else if (action.equals("getUserProperties")) {
+            this.getUserProperties(callbackContext);
         } else if (action.equals("login")) {
             this.login(args, callbackContext);
         } else if (action.equals("logout")) {
@@ -78,6 +80,15 @@ public class SmoochCordova extends CordovaPlugin {
         } catch (JSONException e) {
             callbackContext.error(e.getMessage());
         }
+    }
+
+    private void getUserProperties( CallbackContext callbackContext) {
+        Log.d("Zingle", "getUserProperties called from Java " + User.getCurrentUser().getMetadata().toString());
+        Map<String, Object> userMetaData = new HashMap<String, Object>();
+        userMetaData = User.getCurrentUser().getMetadata();
+
+        JSONObject metaDataObject = new JSONObject(userMetaData);
+        callbackContext.success(metaDataObject);
     }
 
     private void setUserProperties(JSONArray args, CallbackContext callbackContext) {

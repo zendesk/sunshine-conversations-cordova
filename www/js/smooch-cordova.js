@@ -15,6 +15,10 @@ var Smooch = {
   setUserProperties: function(properties, success, error) {
     cordova.exec(success, error, "SmoochCordova", "setUserProperties", [properties]);
   },
+  
+  getUserProperties : function(success, error) {
+    cordova.exec(success, error , "SmoochCordova" , "getUserProperties" , []);
+  },
 
   login: function(userId, jwt, success, error) {
     cordova.exec(success, error, "SmoochCordova", "login", [userId, jwt]);
