@@ -20,6 +20,10 @@ var Smooch = {
     cordova.exec(success, error , "SmoochCordova" , "getUserProperties" , []);
   },
 
+  createConversation: function (message, success, error) {
+    cordova.exec(success, error, "SmoochCordova", "createConversation", [message]);
+  },
+
   login: function(userId, jwt, success, error) {
     cordova.exec(success, error, "SmoochCordova", "login", [userId, jwt]);
   },
