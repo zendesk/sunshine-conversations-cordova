@@ -44,6 +44,27 @@
     }];
 }
 
+- (void)createConversation:(CDVInvokedUrlCommand *)command {
+    
+    NSString *messageText = [command argumentAtIndex:0];
+    
+    SKTMessage *message = [[SKTMessage alloc] initWithText:messageText];
+    
+    [Smooch getConversations: ^(NSError *_Nullable error, NSArray *_Nullable conversations) {
+        if (conversations == nil || [conversations count] == 0) {
+            [Smooch createConversationWithName:nil description:nil iconUrl:nil avatarUrl:nil metadata:nil message:@[message] completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable info) {
+                if(!error){
+                    [self sendSuccess:command];
+                } else {
+                    [self sendFailure:command];
+                }
+            }];
+        } else {
+            [self sendFailure:command];
+        }
+    }];
+};
+
 #pragma mark - User
 
 - (void)setUser:(CDVInvokedUrlCommand *)command {

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,6 +41,8 @@ public class SmoochCordova extends CordovaPlugin {
             this.login(args, callbackContext);
         } else if (action.equals("logout")) {
             this.logout(callbackContext);
+        } else if (action.equals("createConversation")) {
+            this.createConversation(args, callbackContext);
         } else {
             callbackContext.error("Smooch method not supported");
             return false;
@@ -99,6 +102,32 @@ public class SmoochCordova extends CordovaPlugin {
                     //.addProperties(customProps);
 
             callbackContext.success();
+        } catch (JSONException e) {
+            callbackContext.error(e.getMessage());
+        }
+    }
+
+    private void createConversation(JSONArray args, CallbackContext callbackContext) {
+        try {
+            Log.d("Zingle", "In Create Conversation");
+            Conversation conversation = Smooch.getConversation();
+            Message message = new Message( args.getString(0) );
+
+            if (conversation == null || conversation.getMessages().isEmpty()) { 
+                Smooch.createConversation("", "", null, null, Arrays.asList(message), null, new SmoochCallback<Void>() {
+                    @Override
+                    public void run(Response response) {
+                        if (response.getError() == null) {
+                            Log.d("Zingle", response.toString());
+                            callbackContext.success();
+                        } else {
+                            callbackContext.error(response.getError());
+                        }
+                    }
+                });
+            } else {
+                callbackContext.error("Conversation is already started");
+            }
         } catch (JSONException e) {
             callbackContext.error(e.getMessage());
         }
